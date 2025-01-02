@@ -1,3 +1,6 @@
+[submodule "auth-server"]
+	path = auth-server
+	url = git@github.com:nobumitsu-1995/sample-go-auth-server.git
 [submodule "user-service"]
 	path = user-service
 	url = git@github.com:nobumitsu-1995/sample-express-project.git
