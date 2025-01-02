@@ -1,0 +1,6 @@
+# 環境変数
+.env
+
+# ログ, データベース
+nginx/logs
+volumes
