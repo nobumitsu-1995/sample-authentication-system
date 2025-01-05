@@ -10,14 +10,21 @@ services:
     volumes:
       - ./nginx/logs:/var/log/nginx
     restart: always
+    depends_on:
+      - go-app
+      - user-service
   go-app:
-    image: golang:1.21
+    build:
+      context: ./auth-server
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    working_dir: /app
+    working_dir: /go/src/app
     command: go run main.go
     volumes:
       - .:/app
+    depends_on:
+      - redis
   user-service:
     build:
       context: ./user-service
@@ -33,7 +40,7 @@ services:
   redis:
     image: redis:7.0.15-alpine3.20
     ports:
-      - "6380:6380"
+      - "6379:6379"
     volumes:
       - redis-data:/data
     restart: always
